@@ -1,6 +1,46 @@
-= geo_ip
+= GeoIp
 
-Description goes here.
+Retreive the geolocation of an IP address based on the {ipinfodb.com}[http://ipinfodb.com/] webservice.
+
+Consider making a donation to {ipinfodb.com}[http://ipinfodb.com/] at {http://ipinfodb.com/donate.php}[http://ipinfodb.com/donate.php]
+
+== Usage
+
+=== Retreive geolocation
+  GeoIp.remote_geolocation(ip_address)
+
+=== Example
+
+  # 209.85.227.104 = google.be (US)
+  GeoIp.remote_geolocation('209.85.227.104')
+
+returns:
+
+  {
+    :status=>"OK",
+    :ip=>"209.85.227.104"
+    :country_code=>"US",
+    :country_name=>"United States",
+    :region_code=>"06",
+    :region_name=>"California",
+    :city=>"Mountain View",
+    :zip_postal_code=>"94043",
+    :latitude=>"37.4192",
+    :longitude=>"-122.057",
+    :timezone=>"-8",
+    :gmt_offset=>"-8",
+    :dst_offset=>"-7",
+  }
+
+== Getting it
+
+GeoIp can be installed as a Ruby Gem:
+
+  gem install geo_ip
+
+Alternatively, you can also install it as a Rails plugin:
+
+  ./script/plugin install git://github.com/jeroenj/geo_ip.git
 
 == Note on Patches/Pull Requests
  
@@ -14,4 +54,4 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2010 Jeroen Jacobs. See LICENSE for details.
+Copyright (c) 2010 Jeroen Jacobs, {redstorm sprl}[http://www.redstorm.be]. See LICENSE for details.
