@@ -10,7 +10,7 @@ class GeoIp
   def self.remote_geolocation(ip)
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
     
-    uri = SERVICE_URL + "?ip=#{ip}&output=json"
+    uri = SERVICE_URL + "?ip=#{ip}&output=json&timezone=false"
     url = URI.parse(uri)
     reply = JSON.parse(Net::HTTP.get(url))
     location = convert_keys reply
@@ -29,9 +29,6 @@ class GeoIp
     location[:zip_postal_code]  = hash["ZipPostalCode"]
     location[:latitude]         = hash["Latitude"]
     location[:longitude]        = hash["Longitude"]
-    location[:timezone]         = hash["Timezone"]
-    location[:gmt_offset]       = hash["Gmtoffset"]
-    location[:dst_offset]       = hash["Dstoffset"]
     location
   end
 end
