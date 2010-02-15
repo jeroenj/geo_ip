@@ -1,0 +1,7 @@
+== 0.1.1
+ 
+* Removed time zone information since this has been deprecated with the service
+ 
+== 0.1.0
+ 
+* Initial commit
