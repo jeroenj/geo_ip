@@ -7,12 +7,12 @@ Consider making a donation to {ipinfodb.com}[http://ipinfodb.com/] at {http://ip
 == Usage
 
 === Retreive geolocation
-  GeoIp.remote_geolocation(ip_address)
+  GeoIp.geolocation(ip_address)
 
 === Example
 
   # 209.85.227.104 = google.be (US)
-  GeoIp.remote_geolocation('209.85.227.104')
+  GeoIp.geolocation('209.85.227.104')
 
 returns:
 
