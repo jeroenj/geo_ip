@@ -3,6 +3,7 @@
 * Added support for timezone information. Use the optional {:timezone => true|false} option
 * Added support for country lookup. This will result in a faster reply since less queries need
   to be done at ipinfodb's side. Use the optional {:precision => :city|:country} option
+* API change: GeoIp.remote_geolocation(ip) is deprecated in favor of GeoIp.geolocation(ip)
 
 == 0.1.1
 
