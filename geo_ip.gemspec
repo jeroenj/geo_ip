@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{geo_ip}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Jeroen Jacobs"]
-  s.date = %q{2010-02-15}
+  s.date = %q{2010-03-25}
   s.description = %q{A call to the ipinfodb.com will be done to retreive the geolocation based on the IP address. No need to include a database file in the application.}
   s.email = %q{jj@redstorm.com}
   s.extra_rdoc_files = [
@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/jeroenj/geo_ip}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Retreive the geolocation of an IP address based on the ipinfodb.com webservice}
   s.test_files = [
     "spec/geo_ip_spec.rb",
