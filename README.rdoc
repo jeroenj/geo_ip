@@ -27,9 +27,6 @@ returns:
     :zip_postal_code=>"94043",
     :latitude=>"37.4192",
     :longitude=>"-122.057",
-    :timezone=>"-8",
-    :gmt_offset=>"-8",
-    :dst_offset=>"-7",
   }
 
 == Getting it
