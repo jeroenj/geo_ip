@@ -15,6 +15,14 @@ class GeoIp
     geolocation(ip, {:timezone => timezone})
   end
 
+  # Retreive the remote location of a given ip address.
+  #
+  # It takes two optional arguments: precision and timezone
+  # preceision can either be :city (default) or :country
+  # timezone can either be false (default) or true
+  #
+  # Example:
+  # GeoIp.geolocation('209.85.227.104', {:precision => :city, :timezone => true})
   def self.geolocation(ip, options={})
     @precision = options[:precision] || :city
     @timezone  = options[:timezone]  || false
