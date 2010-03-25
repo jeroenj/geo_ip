@@ -1,7 +1,13 @@
+== repository
+
+* Added support for timezone information. Use the optional {:timezone => true|false} option
+* Added support for country lookup. This will result in a faster reply since less queries need
+  to be done at ipinfodb's side. Use the optional {:precision => :city|:country} option
+
 == 0.1.1
- 
+
 * Removed time zone information since this has been deprecated with the service
- 
+
 == 0.1.0
- 
+
 * Initial commit
