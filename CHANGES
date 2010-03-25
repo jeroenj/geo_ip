@@ -1,4 +1,4 @@
-== repository
+== 0.2.0
 
 * Added support for timezone information. Use the optional {:timezone => true|false} option
 * Added support for country lookup. This will result in a faster reply since less queries need
