@@ -17,17 +17,58 @@ Consider making a donation to {ipinfodb.com}[http://ipinfodb.com/] at {http://ip
 returns:
 
   {
-    :status=>"OK",
-    :ip=>"209.85.227.104"
-    :country_code=>"US",
-    :country_name=>"United States",
-    :region_code=>"06",
-    :region_name=>"California",
-    :city=>"Mountain View",
-    :zip_postal_code=>"94043",
-    :latitude=>"37.4192",
-    :longitude=>"-122.057",
+    :status           =>"OK",
+    :ip               =>"209.85.227.104"
+    :country_code     =>"US",
+    :country_name     =>"United States",
+    :region_code      =>"06",
+    :region_name      =>"California",
+    :city             =>"Mountain View",
+    :zip_postal_code  =>"94043",
+    :latitude         =>"37.4192",
+    :longitude        =>"-122.057"
   }
+
+=== Country only
+
+There is an option to only retreive the country information and thus excluding the city details. This results in a faster response from the service since less queries need to be done.
+
+  GeoIp.geolocation('209.85.227.104', {:precision => :country})
+
+returns:
+
+  {
+    :status           => "OK",
+    :ip               => "209.85.227.104"
+    :country_code     => "US",
+    :country_name     => "United States"
+  }
+
+=== Timezone information
+
+There is an option now to retrieve optional timezone information too:
+
+  GeoIp.geolocation('209.85.227.104', {:timezone => true})
+
+returns:
+
+  {
+    :status           =>"OK",
+    :ip               =>"209.85.227.104"
+    :country_code     =>"US",
+    :country_name     =>"United States",
+    :region_code      =>"06",
+    :region_name      =>"California",
+    :city             =>"Mountain View",
+    :zip_postal_code  =>"94043",
+    :latitude         =>"37.4192",
+    :longitude        =>"-122.057"
+    :timezone_name    =>"America/Los_Angeles",
+    :utc_offset       =>-25200,
+    :dst?             =>true
+  }
+
+Obviously it is not possible to have the country precision enabled while retrieving the timezone information.
 
 == Getting it
 
