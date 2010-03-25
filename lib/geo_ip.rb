@@ -7,9 +7,14 @@ require 'uri'
 require 'net/http'
 
 class GeoIp
+  # <b>DEPRECATED:</b> Please use <tt>geolocation</tt> instead.
   def self.remote_geolocation(ip)
+    warn "[DEPRECATION] `remote_geolocation` is deprecated and will be removed from 0.2. Use `geolocation` instead."
+    geolocation(ip)
+  end
+
+  def self.geolocation(ip)
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
-    
     uri = SERVICE_URL + "?ip=#{ip}&output=json&timezone=false"
     url = URI.parse(uri)
     reply = JSON.parse(Net::HTTP.get(url))
