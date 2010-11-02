@@ -2,6 +2,8 @@
 
 Retreive the geolocation of an IP address based on the {ipinfodb.com}[http://ipinfodb.com/] webservice.
 
+As of 8th November 2010, the service is asking that all users {register}[http://ipinfodb.com/register.php] for an API key.
+
 Consider making a donation to {ipinfodb.com}[http://ipinfodb.com/] at {http://ipinfodb.com/donate.php}[http://ipinfodb.com/donate.php]
 
 == Usage

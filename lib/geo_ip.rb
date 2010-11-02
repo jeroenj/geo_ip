@@ -1,7 +1,8 @@
-SERVICE_URL = "http://ipinfodb.com/"
+SERVICE_URL = "http://api.ipinfodb.com/v2/"
 CITY_API    = "ip_query.php"
 COUNTRY_API = "ip_query_country.php"
 IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
+API_KEY     = ""
 
 require 'rubygems'
 require 'json'
@@ -29,7 +30,7 @@ class GeoIp
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
-    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?ip=#{ip}&output=json&timezone=#{@timezone}"
+    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{API_KEY}&ip=#{ip}&output=json&timezone=#{@timezone}"
     url = URI.parse(uri)
     reply = JSON.parse(Net::HTTP.get(url))
     location = convert_keys reply
