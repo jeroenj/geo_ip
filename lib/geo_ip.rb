@@ -2,7 +2,6 @@ SERVICE_URL = "http://api.ipinfodb.com/v2/"
 CITY_API    = "ip_query.php"
 COUNTRY_API = "ip_query_country.php"
 IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
-API_KEY     = ""
 
 require 'rubygems'
 require 'json'
@@ -10,6 +9,17 @@ require 'uri'
 require 'net/http'
 
 class GeoIp
+
+  @@api_key = nil
+
+  def self.api_key
+    @@api_key
+  end
+  
+  def self.api_key=(api_key)
+    @@api_key = api_key
+  end
+
   # <b>DEPRECATED:</b> Please use <tt>geolocation</tt> instead.
   def self.remote_geolocation(ip, timezone=false)
     warn "DEPRECATION WARNING: `remote_geolocation` is deprecated and will be removed from 0.3. Use `geolocation` instead."
@@ -27,10 +37,11 @@ class GeoIp
   def self.geolocation(ip, options={})
     @precision = options[:precision] || :city
     @timezone  = options[:timezone]  || false
+    raise "API key must be set first: GeoIp.api_key = 'YOURKEY'" if self.api_key.nil?
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
-    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{API_KEY}&ip=#{ip}&output=json&timezone=#{@timezone}"
+    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
     url = URI.parse(uri)
     reply = JSON.parse(Net::HTTP.get(url))
     location = convert_keys reply

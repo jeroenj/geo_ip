@@ -8,7 +8,12 @@ Consider making a donation to {ipinfodb.com}[http://ipinfodb.com/] at {http://ip
 
 == Usage
 
-=== Retreive geolocation
+=== Set API key
+  GeoIp.api_key = "YOUR_API_KEY"
+
+This must be done before making the geolocation call.
+
+=== Retrieve geolocation
   GeoIp.geolocation(ip_address)
 
 === Example
@@ -82,8 +87,14 @@ Alternatively, you can also install it as a Rails plugin:
 
   ./script/plugin install git://github.com/jeroenj/geo_ip.git
 
+== Testing
+
+Set up your API key first for the test suite by creating a spec/api.yml file. Follow the example in spec/api.yml.example. Then run the tests with:
+
+  ruby spec/geo_ip_spec.rb
+
 == Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a

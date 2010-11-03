@@ -4,6 +4,24 @@ IP_PRIVATE = '10.0.0.1'
 IP_LOCAL = '127.0.0.1'
 
 describe "GeoIp" do
+  
+  before(:all) do
+    api_config = YAML.load_file(File.dirname(__FILE__) + '/api.yml')
+    GeoIp.api_key = api_config['key']
+  end
+  
+  context "api_key" do
+    it "should return the API key when set" do
+      GeoIp.api_key = "my_api_key"
+      GeoIp.api_key.should == "my_api_key"
+    end
+    
+    it "should throw an error when API key is not set" do
+      GeoIp.api_key = nil
+      lambda {GeoIp.geolocation(IP_GOOGLE_US)}.should raise_error
+    end
+  end
+
   context "city" do
     it "should return the correct city for a public ip address" do
       geolocation = GeoIp.geolocation(IP_GOOGLE_US)
