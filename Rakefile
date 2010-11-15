@@ -10,6 +10,7 @@ begin
     gem.email = "jj@redstorm.com"
     gem.homepage = "http://github.com/jeroenj/geo_ip"
     gem.authors = ["Jeroen Jacobs"]
+    gem.add_dependency "json"
     gem.add_development_dependency "rspec", ">= 1.2.9"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

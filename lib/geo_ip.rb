@@ -3,7 +3,6 @@ CITY_API    = "ip_query.php"
 COUNTRY_API = "ip_query_country.php"
 IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
 
-require 'rubygems'
 require 'json'
 require 'uri'
 require 'net/http'
