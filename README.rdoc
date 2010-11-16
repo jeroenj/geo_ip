@@ -93,6 +93,16 @@ Set up your API key first for the test suite by creating a spec/api.yml file. Fo
 
   ruby spec/geo_ip_spec.rb
 
+If you get a LoadError, you should run the tests with:
+
+  ruby -rubygems spec/geo_ip_spec.rb
+
+== Colaborators
+
+* {seanconaty}[https://github.com/seanconaty]
+* {luigi}[https://github.com/luigi]
+* {idris}[https://github.com/idris]
+
 == Note on Patches/Pull Requests
 
 * Fork the project.
