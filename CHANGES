@@ -1,3 +1,9 @@
+== 0.3.0
+
+* Added support for API key requirement (Thanks to seanconaty and luigi)
+* Explicit gem dependency for json and removed rubygems requirement (idris) (http://tomayko.com/writings/require-rubygems-antipattern)
+* Removed deprecated GeoIp#remote_geolocation method
+
 == 0.2.0
 
 * Added support for timezone information. Use the optional {:timezone => true|false} option
