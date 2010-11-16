@@ -108,12 +108,4 @@ describe "GeoIp" do
       geolocation[:dst?].should          be_nil
     end
   end
-
-  context "deprecated" do
-    it "should return the correct country for a public ip address" do
-      geolocation = GeoIp.remote_geolocation(IP_GOOGLE_US)
-      geolocation[:country_code].should == 'US'
-      geolocation[:country_name].should == 'United States'
-    end
-  end
 end

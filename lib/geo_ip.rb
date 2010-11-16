@@ -14,15 +14,9 @@ class GeoIp
   def self.api_key
     @@api_key
   end
-  
+
   def self.api_key=(api_key)
     @@api_key = api_key
-  end
-
-  # <b>DEPRECATED:</b> Please use <tt>geolocation</tt> instead.
-  def self.remote_geolocation(ip, timezone=false)
-    warn "DEPRECATION WARNING: `remote_geolocation` is deprecated and will be removed from 0.3. Use `geolocation` instead."
-    geolocation(ip, {:timezone => timezone})
   end
 
   # Retreive the remote location of a given ip address.
