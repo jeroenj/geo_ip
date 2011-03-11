@@ -7,7 +7,7 @@ begin
     gem.name = "geo_ip"
     gem.summary = "Retreive the geolocation of an IP address based on the ipinfodb.com webservice"
     gem.description = "A call to the ipinfodb.com will be done to retreive the geolocation based on the IP address. No need to include a database file in the application."
-    gem.email = "jacobsjeroen@gmail.com"
+    gem.email = "gems@jeroenj.be"
     gem.homepage = "http://github.com/jeroenj/geo_ip"
     gem.authors = ["Jeroen Jacobs"]
     gem.add_dependency "json", "~> 1.4.6"

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["Jeroen Jacobs"]
   s.date = %q{2010-11-16}
   s.description = %q{A call to the ipinfodb.com will be done to retreive the geolocation based on the IP address. No need to include a database file in the application.}
-  s.email = %q{jacobsjeroen@gmail.com}
+  s.email = %q{gems@jeroenj.be}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
