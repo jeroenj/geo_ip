@@ -5,7 +5,7 @@ IP_LOCAL = '127.0.0.1'
 
 describe "GeoIp" do
 
-  before(:all) do
+  before :each do
     api_config = YAML.load_file(File.dirname(__FILE__) + '/api.yml')
     GeoIp.api_key = api_config['key']
   end
