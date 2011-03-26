@@ -121,15 +121,18 @@ If you get a LoadError, you should run the tests with:
 * [luigi](https://github.com/luigi)
 * [idris](https://github.com/idris)
 
-## Note on Patches/Pull Requests
+## Bugs
 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+Please report them on the [Github issue tracker](https://github.com/jeroenj/geo_ip/issues)
+for this project.
+
+If you have a bug to report, please include the following information:
+
+* **Version information for bierdopje, Rails and Ruby.**
+* Stack trace and error message.
+
+You may also fork this project on Github and create a pull request.
+Do not forget to include tests.
 
 ## Copyright
 
