@@ -83,9 +83,27 @@ GeoIp can be installed as a Ruby Gem:
 
     gem install geo_ip
 
-Alternatively, you can also install it as a Rails plugin:
+### Rails
 
-    ./script/plugin install git://github.com/jeroenj/geo_ip.git
+#### Bundler enabled (Rails 3.0.x and 2.3.x)
+
+In your Gemfile:
+
+    gem 'geo_ip', '~> 0.3.0'
+
+Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
+
+    GeoIp.api_key = "YOUR_API_KEY"
+
+#### Pre-bundler (Rails 2.3.x or older)
+
+In your `config/environment.rb`:
+
+    config.gem 'geo_ip', :version => '~> 0.3.0'
+
+Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
+
+    GeoIp.api_key = "YOUR_API_KEY"
 
 ## Testing
 
