@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'geo_ip'
-  s.version     = '0.3.0'
+  s.version     = '0.3.1'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Jeroen Jacobs']
   s.email       = 'gems@jeroenj.be'
