@@ -1,3 +1,10 @@
+## 0.3.2
+
+* Replaced Net::HTTP with Curb which handles DNS failure timeouts better.
+* Added a timeout option to be passed when calling geolocation.
+* Handle service failures gracefully.
+* Added a test to ensure error handling of service failures works.
+
 ## 0.3.1 (in development)
 
 * Switches to bundler for gem deployment
