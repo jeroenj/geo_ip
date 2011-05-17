@@ -48,7 +48,7 @@ class GeoIp
     http = Curl::Easy.new(uri)
     http.timeout = @timeout
     http.perform
-    http.body_str
+    JSON.parse(http.body_str)
   rescue => e
     error = {}
     error[:error_msg] = "#{ERROR_PREFIX}: \"#{e}\"."
