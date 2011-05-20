@@ -1,4 +1,4 @@
-## 0.3.2 (in development)
+## 0.3.2
 
 * Switches to [rest-client](https://github.com/adamwiggins/rest-client) for requests
 * Sets default timeout to 1 second and adds option to override it
