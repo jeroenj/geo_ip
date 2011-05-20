@@ -43,15 +43,11 @@ class GeoIp
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
     url = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
-    reply = JSON.parse send_request(url)
+    reply = JSON.parse RestClient::Request.execute(:method => :get, :url => url, :timeout => self.timeout)
     location = convert_keys reply
   end
 
   private
-  def send_request url
-    RestClient::Request.execute(:method => :get, :url => url, :timeout => self.timeout)
-  end
-
   def self.convert_keys(hash)
     location = {}
     location[:ip]                 = hash["Ip"]
