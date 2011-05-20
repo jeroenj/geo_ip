@@ -4,11 +4,9 @@ COUNTRY_API = "ip_query_country.php"
 IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
 
 require 'json'
-require 'uri'
-require 'net/http'
+require 'rest-client'
 
 class GeoIp
-
   @@api_key = nil
 
   def self.api_key
@@ -34,9 +32,8 @@ class GeoIp
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
-    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
-    url = URI.parse(uri)
-    reply = JSON.parse(Net::HTTP.get(url))
+    url = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
+    reply = JSON.parse RestClient.get(url)
     location = convert_keys reply
   end
 
