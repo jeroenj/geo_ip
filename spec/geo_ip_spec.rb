@@ -83,8 +83,8 @@ describe "GeoIp" do
     it "should return the correct timezone information for a public ip address" do
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, {:timezone => true})
       geolocation[:timezone_name].should == 'America/Los_Angeles'
-      geolocation[:utc_offset].should    == -28800
       geolocation[:dst?].should_not      be_nil # true if dst?, false if not dst?
+      geolocation[:utc_offset].should    == (geolocation[:dst?] ? -25200 : -28800)
     end
 
     it "should not return the timezone information when explicitly not requesting it" do
