@@ -1,13 +1,13 @@
-SERVICE_URL = "http://api.ipinfodb.com/v2/"
-CITY_API    = "ip_query.php"
-COUNTRY_API = "ip_query_country.php"
-IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
-
 require 'json'
-require 'uri'
-require 'net/http'
+require 'curb'
 
 class GeoIp
+  SERVICE_URL     = "http://api.ipinfodb.com/v2"
+  CITY_API        = "ip_query.php"
+  COUNTRY_API     = "ip_query_country.php"
+  IPV4_REGEXP     = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
+  TIMEOUT         = 1
+  ERROR_PREFIX    = "GeoIP service error"
 
   @@api_key = nil
 
@@ -30,17 +30,31 @@ class GeoIp
   def self.geolocation(ip, options={})
     @precision = options[:precision] || :city
     @timezone  = options[:timezone]  || false
+    @timeout   = options[:timeout]   || TIMEOUT
+    
     raise "API key must be set first: GeoIp.api_key = 'YOURKEY'" if self.api_key.nil?
     raise "Invalid IP address" unless ip.to_s =~ IPV4_REGEXP
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
-    uri = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
-    url = URI.parse(uri)
-    reply = JSON.parse(Net::HTTP.get(url))
-    location = convert_keys reply
+   
+    uri = "#{SERVICE_URL}/#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
+    
+    convert_keys send_request(uri)
   end
 
   private
+  
+  def self.send_request(uri)
+    http = Curl::Easy.new(uri)
+    http.timeout = @timeout
+    http.perform
+    JSON.parse(http.body_str)
+  rescue => e
+    error = {}
+    error[:error_msg] = "#{ERROR_PREFIX}: \"#{e}\"."
+    error
+  end
+  
   def self.convert_keys(hash)
     location = {}
     location[:ip]                 = hash["Ip"]
@@ -60,6 +74,7 @@ class GeoIp
         location[:dst?]           = hash["Isdst"] ? true : false
       end
     end
+    location[:error]              = hash[:error_msg] if hash[:error_msg]
     location
   end
 end
