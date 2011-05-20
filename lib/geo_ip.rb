@@ -17,6 +17,16 @@ class GeoIp
     @@api_key = api_key
   end
 
+  @@timeout = 1
+
+  def self.timeout
+    @@timeout
+  end
+
+  def self.timeout= timeout
+    @@timeout = timeout
+  end
+
   # Retreive the remote location of a given ip address.
   #
   # It takes two optional arguments:
@@ -33,11 +43,15 @@ class GeoIp
     raise "Invalid precision"  unless [:country, :city].include?(@precision)
     raise "Invalid timezone"   unless [true, false].include?(@timezone)
     url = "#{SERVICE_URL}#{@country ? COUNTRY_API : CITY_API}?key=#{self.api_key}&ip=#{ip}&output=json&timezone=#{@timezone}"
-    reply = JSON.parse RestClient.get(url)
+    reply = JSON.parse send_request(url)
     location = convert_keys reply
   end
 
   private
+  def send_request url
+    RestClient::Request.execute(:method => :get, :url => url, :timeout => self.timeout)
+  end
+
   def self.convert_keys(hash)
     location = {}
     location[:ip]                 = hash["Ip"]
