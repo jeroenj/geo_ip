@@ -77,6 +77,12 @@ returns:
 
 Obviously it is not possible to have the country precision enabled while retrieving the timezone information.
 
+### Timeout
+
+It is possible to set a timeout for all requests. By default it is one second, but you can easily set a different value. Just like you would set the api_key you can set the timeout:
+
+    GeoIp.timeout = 5 # In order to set it to five seconds
+
 ## Getting it
 
 GeoIp can be installed as a Ruby Gem:
