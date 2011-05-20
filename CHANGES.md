@@ -1,4 +1,11 @@
-## 0.3.1 (in development)
+## 0.3.2 (in development)
+
+* Switches to [rest-client](https://github.com/adamwiggins/rest-client) for requests
+* Sets default timeout to 1 second and adds option to override it
+* More relaxed json dependency scoping
+* Some internal code refactoring
+
+## 0.3.1
 
 * Switches to bundler for gem deployment
 * Uses Rspec 2.x from now on
