@@ -56,7 +56,7 @@ returns:
 
 There is an option now to retrieve optional timezone information too:
 
-  GeoIp.geolocation('209.85.227.104', :timezone => true)
+    GeoIp.geolocation('209.85.227.104', :timezone => true)
 
 returns:
 
@@ -75,6 +75,27 @@ returns:
     }
 
 Obviously it is not possible to have the country precision enabled while retrieving the timezone information.
+
+### Reserved / Private / Local IPs
+
+Passing reserved, private or local IPs, such as `127.0.0.1` will return `-` for all location data, for example:
+
+    GeoIpCurb.geolocation('127.0.0.1')
+
+returns:
+
+    {
+      :status_code    => "OK",
+      :status_message => "",
+      :ip             => "127.0.0.1",
+      :country_code   => "-",
+      :country_name   => "-",
+      :region_name    => "-",
+      :city           => "-",
+      :zip_code       => "-",
+      :latitude       => "0",
+      :longitude      => "0"
+    }
 
 ### Timeout
 
