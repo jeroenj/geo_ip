@@ -9,7 +9,7 @@ Consider making a donation to [ipinfodb.com](http://ipinfodb.com/) at [http://ip
 ## Usage
 
 ### Set API key
-    GeoIp.api_key = "YOUR_API_KEY"
+    GeoIp.api_key = 'YOUR_API_KEY'
 
 This must be done before making the geolocation call.
 
@@ -24,55 +24,54 @@ This must be done before making the geolocation call.
 returns:
 
     {
-      :status           =>"OK",
-      :ip               =>"209.85.227.104"
-      :country_code     =>"US",
-      :country_name     =>"United States",
-      :region_code      =>"06",
-      :region_name      =>"California",
-      :city             =>"Mountain View",
-      :zip_postal_code  =>"94043",
-      :latitude         =>"37.4192",
-      :longitude        =>"-122.057"
+      :status_code    => "OK",
+      :status_message => "",
+      :ip             => "209.85.227.104"
+      :country_code   => "US",
+      :country_name   => "UNITED STATES",
+      :region_name    => "CALIFORNIA",
+      :city           => "MONTEREY PARK",
+      :zip_code       => "91754",
+      :latitude       => "34.0505",
+      :longitude      => "-118.13"
     }
 
 ### Country only
 
 There is an option to only retreive the country information and thus excluding the city details. This results in a faster response from the service since less queries need to be done.
 
-    GeoIp.geolocation('209.85.227.104', {:precision => :country})
+    GeoIp.geolocation('209.85.227.104', :precision => :country)
 
 returns:
 
     {
-      :status           => "OK",
-      :ip               => "209.85.227.104"
-      :country_code     => "US",
-      :country_name     => "United States"
+      :status_code    => "OK",
+      :status_message => "",
+      :ip             => "209.85.227.104"
+      :country_code   => "US",
+      :country_name   => "UNITED STATES"
     }
 
 ### Timezone information
 
 There is an option now to retrieve optional timezone information too:
 
-  GeoIp.geolocation('209.85.227.104', {:timezone => true})
+  GeoIp.geolocation('209.85.227.104', :timezone => true)
 
 returns:
 
     {
-      :status           =>"OK",
-      :ip               =>"209.85.227.104"
-      :country_code     =>"US",
-      :country_name     =>"United States",
-      :region_code      =>"06",
-      :region_name      =>"California",
-      :city             =>"Mountain View",
-      :zip_postal_code  =>"94043",
-      :latitude         =>"37.4192",
-      :longitude        =>"-122.057"
-      :timezone_name    =>"America/Los_Angeles",
-      :utc_offset       =>-25200,
-      :dst?             =>true
+      :status_code    => "OK",
+      :status_message => "",
+      :ip             => "209.85.227.104"
+      :country_code   => "US",
+      :country_name   => "UNITED STATES",
+      :region_name    => "CALIFORNIA",
+      :city           => "MONTEREY PARK",
+      :zip_code       => "91754",
+      :latitude       => "34.0505",
+      :longitude      => "-118.13"
+      :timezone       => "-08:00"
     }
 
 Obviously it is not possible to have the country precision enabled while retrieving the timezone information.
@@ -99,7 +98,7 @@ In your Gemfile:
 
 Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
 
-    GeoIp.api_key = "YOUR_API_KEY"
+    GeoIp.api_key = 'YOUR_API_KEY'
 
 #### Pre-bundler (Rails 2.3.x or older)
 
@@ -109,7 +108,7 @@ In your `config/environment.rb`:
 
 Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
 
-    GeoIp.api_key = "YOUR_API_KEY"
+    GeoIp.api_key = 'YOUR_API_KEY'
 
 ## Testing
 
