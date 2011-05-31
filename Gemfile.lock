@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    geo_ip (0.3.2)
+    geo_ip (0.4.0)
       json (~> 1.4)
       rest-client (~> 1.6.1)
 
