@@ -9,6 +9,7 @@ class GeoIp
 
   @@api_key = nil
   @@timeout = 1
+  @@fallback_timeout = 3
 
   class << self
     def api_key
@@ -27,6 +28,29 @@ class GeoIp
       @@timeout = timeout
     end
 
+    def fallback_timeout
+      @@fallback_timeout
+    end
+
+    def fallback_timeout= fallback_timeout
+      @@fallback_timeout = fallback_timeout
+    end
+
+    def set_defaults_if_necessary options
+      options[:precision] ||= :city
+      options[:timezone]  ||= false
+      raise 'Invalid precision'  unless [:country, :city].include?(options[:precision])
+      raise 'Invalid timezone'   unless [true, false].include?(options[:timezone])
+    end
+
+    def lookup_url ip, options = {}
+      set_defaults_if_necessary options
+      raise 'API key must be set first: GeoIp.api_key = \'YOURKEY\'' if self.api_key.nil?
+      raise 'Invalid IP address' unless ip.to_s =~ IPV4_REGEXP
+
+      "#{SERVICE_URL}#{options[:precision] == :city || options[:timezone] ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{options[:timezone]}"
+    end
+
     # Retreive the remote location of a given ip address.
     #
     # It takes two optional arguments:
@@ -36,32 +60,31 @@ class GeoIp
     # ==== Example:
     #   GeoIp.geolocation('209.85.227.104', {:precision => :city, :timezone => true})
     def geolocation ip, options={}
-      @precision = options[:precision] || :city
-      @timezone  = options[:timezone]  || false
-      raise 'API key must be set first: GeoIp.api_key = \'YOURKEY\'' if self.api_key.nil?
-      raise 'Invalid IP address' unless ip.to_s =~ IPV4_REGEXP
-      raise 'Invalid precision'  unless [:country, :city].include?(@precision)
-      raise 'Invalid timezone'   unless [true, false].include?(@timezone)
-      url = "#{SERVICE_URL}#{@precision == :city || @timezone ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{@timezone}"
-      parsed_response = JSON.parse RestClient::Request.execute(:method => :get, :url => url, :timeout => self.timeout)
-      convert_keys parsed_response
+      location = nil
+      Timeout.timeout(self.fallback_timeout) do
+        parsed_response = JSON.parse RestClient::Request.execute(:method => :get, :url => lookup_url(ip, options), :timeout => self.timeout)
+        location = convert_keys(parsed_response, options)
+      end
+
+      location
     end
 
     private
-    def convert_keys hash
+    def convert_keys hash, options
+      set_defaults_if_necessary options
       location = {}
       location[:ip]             = hash['ipAddress']
       location[:status_code]    = hash['statusCode']
       location[:status_message] = hash['statusMessage']
       location[:country_code]   = hash['countryCode']
       location[:country_name]   = hash['countryName']
-      if @precision == :city
+      if options[:precision] == :city
         location[:region_name]  = hash['regionName']
         location[:city]         = hash['cityName']
         location[:zip_code]     = hash['zipCode']
         location[:latitude]     = hash['latitude']
         location[:longitude]    = hash['longitude']
-        if @timezone
+        if options[:timezone]
           location[:timezone]   = hash['timeZone']
         end
       end

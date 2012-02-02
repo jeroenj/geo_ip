@@ -8,6 +8,8 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.6)
+    crack (0.3.1)
     diff-lcs (1.1.2)
     json (1.5.3)
     mime-types (1.16)
@@ -21,6 +23,9 @@ GEM
     rspec-expectations (2.6.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.6.0)
+    webmock (1.7.10)
+      addressable (~> 2.2, > 2.2.5)
+      crack (>= 0.1.7)
 
 PLATFORMS
   ruby
@@ -28,3 +33,4 @@ PLATFORMS
 DEPENDENCIES
   geo_ip!
   rspec (~> 2.5)
+  webmock (~> 1.7.10)
