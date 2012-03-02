@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 1.4'
   s.add_dependency 'rest-client', '~> 1.6.1'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 2.5'
   s.add_development_dependency 'webmock', '~> 1.7.10'
 end
