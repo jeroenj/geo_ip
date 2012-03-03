@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = 'geo_ip'
-  s.version     = '0.4.0'
+  s.version     = '0.5.0'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Jeroen Jacobs']
   s.email       = 'gems@jeroenj.be'
@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Retreive the geolocation of an IP address based on the ipinfodb.com webservice'
   s.description = 'A call to the ipinfodb.com will be done to retreive the geolocation based on the IP address. No need to include a database file in the application.'
 
-  s.files         = Dir['README.rdoc', 'CHANGES', 'LICENSE', 'lib/**/*']
+  s.files         = Dir['README.md', 'CHANGES.md', 'LICENSE', 'lib/**/*']
   s.test_files    = Dir.glob('spec/**/*')
   s.require_paths = ['lib']
 
