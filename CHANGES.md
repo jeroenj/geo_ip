@@ -1,3 +1,11 @@
+## 0.5.0
+
+* Wrap Ruby's Timeout module around the RestClient call to enforce timeout if caused by bad internet connection or slow or invalid DNS lookup. Added WebMock to tests to have reliable tests. By [harleyttd](https://github.com/harleyttd)
+
+## 0.4.0
+
+* Uses API v3
+
 ## 0.3.2
 
 * Switches to [rest-client](https://github.com/adamwiggins/rest-client) for requests

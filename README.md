@@ -147,6 +147,7 @@ If you get a LoadError, you should run the tests with:
 * [luigi](https://github.com/luigi)
 * [idris](https://github.com/idris)
 * [Rylon](https://github.com/Rylon)
+* [harleyttd](https://github.com/harleyttd)
 
 ## Bugs
 
