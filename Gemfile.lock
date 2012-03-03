@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    geo_ip (0.4.0)
+    geo_ip (0.5.0)
       json (~> 1.4)
       rest-client (~> 1.6.1)
 
@@ -11,10 +11,10 @@ GEM
     addressable (2.2.6)
     crack (0.3.1)
     diff-lcs (1.1.2)
-    json (1.5.3)
-    mime-types (1.16)
+    json (1.6.5)
+    mime-types (1.17.2)
     rake (0.9.2.2)
-    rest-client (1.6.3)
+    rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
