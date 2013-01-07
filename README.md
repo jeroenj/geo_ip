@@ -111,11 +111,11 @@ GeoIp can be installed as a Ruby Gem:
 
 ### Rails
 
-#### Bundler enabled (Rails 3.0.x and 2.3.x)
+#### Bundler enabled (Rails 3.x and 2.3.x)
 
 In your Gemfile:
 
-    gem 'geo_ip', '~> 0.3.0'
+    gem 'geo_ip'
 
 Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
 
@@ -125,7 +125,7 @@ Then create an initializer `config/initializers/geo_ip` (or name it whatever you
 
 In your `config/environment.rb`:
 
-    config.gem 'geo_ip', :version => '~> 0.3.0'
+    config.gem 'geo_ip'
 
 Then create an initializer `config/initializers/geo_ip` (or name it whatever you want):
 
