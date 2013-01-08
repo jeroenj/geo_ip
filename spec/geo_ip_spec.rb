@@ -287,7 +287,7 @@ describe 'GeoIp' do
 
     it 'should trigger fallback timeout when RestClient is taking too long to send the request', :focus => true do
       GeoIp.fallback_timeout = 1
-      RestClient::Request.stub(:execute) { sleep 1 }
+      RestClient::Request.stub(:execute) { sleep 2 }
       lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception(Timeout::Error)
     end
   end
