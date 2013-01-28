@@ -80,7 +80,7 @@ Obviously it is not possible to have the country precision enabled while retriev
 
 Passing reserved, private or local IPs, such as `127.0.0.1` will return `-` for all location data, for example:
 
-    GeoIpCurb.geolocation('127.0.0.1')
+    GeoIp.geolocation('127.0.0.1')
 
 returns:
 
