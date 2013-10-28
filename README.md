@@ -156,7 +156,7 @@ for this project.
 
 If you have a bug to report, please include the following information:
 
-* **Version information for bierdopje, Rails and Ruby.**
+* Version information for geo_ip, ruby and/or rails.
 * Stack trace and error message.
 
 You may also fork this project on Github and create a pull request.
@@ -164,4 +164,4 @@ Do not forget to include tests.
 
 ## Copyright
 
-Copyright (c) 2010-2011 Jeroen Jacobs. See LICENSE for details.
+Copyright (c) 2010-2013 Jeroen Jacobs. See LICENSE for details.
