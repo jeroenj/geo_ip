@@ -2,6 +2,11 @@ require 'json'
 require 'rest-client'
 
 class GeoIp
+  class InvalidPrecissionError < ArgumentError; end
+  class InvalidTimezoneError < ArgumentError; end
+  class InvalidIpError < ArgumentError; end
+  class ApiKeyError < ArgumentError; end
+
   SERVICE_URL = 'http://api.ipinfodb.com/v3/ip-'
   CITY_API    = 'city'
   COUNTRY_API = 'country'
@@ -39,14 +44,14 @@ class GeoIp
     def set_defaults_if_necessary options
       options[:precision] ||= :city
       options[:timezone]  ||= false
-      raise 'Invalid precision'  unless [:country, :city].include?(options[:precision])
-      raise 'Invalid timezone'   unless [true, false].include?(options[:timezone])
+      raise InvalidPrecisionError unless [:country, :city].include?(options[:precision])
+      raise InvalidTimezoneError unless [true, false].include?(options[:timezone])
     end
 
     def lookup_url ip, options = {}
       set_defaults_if_necessary options
-      raise 'API key must be set first: GeoIp.api_key = \'YOURKEY\'' if self.api_key.nil?
-      raise 'Invalid IP address' unless ip.to_s =~ IPV4_REGEXP
+      raise ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if self.api_key.nil?
+      raise InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
 
       "#{SERVICE_URL}#{options[:precision] == :city || options[:timezone] ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{options[:timezone]}"
     end
