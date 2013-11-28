@@ -10,7 +10,7 @@ USE_WEBMOCK = true
 describe 'GeoIp' do
   before :all do
     unless USE_WEBMOCK
-      puts "Running tests WITHOUT WebMock. You will need an internet connection. You may need to increase the GeoIp.fallback_timeout amount."
+      puts 'Running tests WITHOUT WebMock. You will need an internet connection. You may need to increase the GeoIp.fallback_timeout amount.'
       WebMock.disable!
     end
   end
@@ -279,10 +279,10 @@ describe 'GeoIp' do
     end
   end
 
-  context "timeout" do
+  context 'timeout' do
     it 'should trigger timeout when the request is taking too long' do
       stub_request(:get, GeoIp.lookup_url(IP_GOOGLE_US)).to_timeout
-      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception("Request Timeout")
+      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception('Request Timeout')
     end
 
     it 'should trigger fallback timeout when RestClient is taking too long to send the request', :focus => true do
