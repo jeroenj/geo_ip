@@ -36,7 +36,7 @@ describe 'GeoIp' do
 
     it 'should throw an error when API key is not set' do
       GeoIp.api_key = nil
-      lambda {GeoIp.geolocation(IP_GOOGLE_US)}.should raise_error
+      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_error
     end
   end
 
