@@ -66,12 +66,6 @@ Style/Lambda:
   Exclude:
     - 'spec/geo_ip_spec.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/MethodDefParentheses:
-  Enabled: false
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

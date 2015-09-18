@@ -21,7 +21,7 @@ class GeoIp
       @@api_key
     end
 
-    def api_key= api_key
+    def api_key=(api_key)
       @@api_key = api_key
     end
 
@@ -29,7 +29,7 @@ class GeoIp
       @@timeout
     end
 
-    def timeout= timeout
+    def timeout=(timeout)
       @@timeout = timeout
     end
 
@@ -37,18 +37,18 @@ class GeoIp
       @@fallback_timeout
     end
 
-    def fallback_timeout= fallback_timeout
+    def fallback_timeout=(fallback_timeout)
       @@fallback_timeout = fallback_timeout
     end
 
-    def set_defaults_if_necessary options
+    def set_defaults_if_necessary(options)
       options[:precision] ||= :city
       options[:timezone]  ||= false
       raise InvalidPrecisionError unless [:country, :city].include?(options[:precision])
       raise InvalidTimezoneError unless [true, false].include?(options[:timezone])
     end
 
-    def lookup_url ip, options = {}
+    def lookup_url(ip, options = {})
       set_defaults_if_necessary options
       raise ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if self.api_key.nil?
       raise InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
@@ -64,7 +64,7 @@ class GeoIp
     #
     # ==== Example:
     #   GeoIp.geolocation('209.85.227.104', {:precision => :city, :timezone => true})
-    def geolocation ip, options={}
+    def geolocation(ip, options={})
       location = nil
       Timeout.timeout(self.fallback_timeout) do
         parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: self.timeout)
@@ -76,7 +76,7 @@ class GeoIp
 
     private
 
-    def convert_keys hash, options
+    def convert_keys(hash, options)
       set_defaults_if_necessary options
       location = {}
       location[:ip]             = hash['ipAddress']
