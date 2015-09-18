@@ -66,14 +66,6 @@ Style/Lambda:
   Exclude:
     - 'spec/geo_ip_spec.rb'
 
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'Rakefile'
-    - 'spec/geo_ip_spec.rb'
-
 # Offense count: 2
 # Configuration parameters: SupportedStyles.
 Style/RaiseArgs:

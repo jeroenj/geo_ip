@@ -43,7 +43,7 @@ describe 'GeoIp' do
   context 'city' do
     it 'should return the correct city for a public ip address' do
       stub_geolocation(IP_GOOGLE_US) do
-%[{
+%({
               "statusCode" : "OK",
               "statusMessage" : "",
               "ipAddress" : "209.85.227.104",
@@ -55,7 +55,7 @@ describe 'GeoIp' do
               "latitude" : "34.0505",
               "longitude" : "-118.13",
               "timeZone" : "-08:00"
-}]
+})
       end
 
       geolocation = GeoIp.geolocation(IP_GOOGLE_US)
@@ -66,7 +66,7 @@ describe 'GeoIp' do
 
     it 'should return nothing city for a private ip address' do
       stub_geolocation(IP_PRIVATE) do
-%[{
+%({
               "statusCode" : "OK",
               "statusMessage" : "",
               "ipAddress" : "10.0.0.1",
@@ -78,7 +78,7 @@ describe 'GeoIp' do
               "latitude" : "0",
               "longitude" : "0",
               "timeZone" : "-"
-}]
+})
       end
 
       geolocation = GeoIp.geolocation(IP_PRIVATE)
@@ -89,7 +89,7 @@ describe 'GeoIp' do
 
     it 'should return nothing for localhost ip address' do
       stub_geolocation(IP_LOCAL) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "127.0.0.1",
@@ -101,7 +101,7 @@ describe 'GeoIp' do
 	"latitude" : "0",
 	"longitude" : "0",
 	"timeZone" : "-"
-}]
+})
       end
 
       geolocation = GeoIp.geolocation(IP_LOCAL)
@@ -112,7 +112,7 @@ describe 'GeoIp' do
 
     it 'should return the correct city for a public ip address when explicitly requiring it' do
       stub_geolocation(IP_GOOGLE_US) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
@@ -124,7 +124,7 @@ describe 'GeoIp' do
 	"latitude" : "34.0505",
 	"longitude" : "-118.13",
 	"timeZone" : "-08:00"
-}]
+})
       end
 
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :city)
@@ -137,13 +137,13 @@ describe 'GeoIp' do
   context 'country' do
     it 'should return the correct country for a public ip address' do
       stub_geolocation(IP_GOOGLE_US, precision: :country) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
 	"countryCode" : "US",
 	"countryName" : "UNITED STATES"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country)
       geolocation[:country_code].should == 'US'
@@ -152,13 +152,13 @@ describe 'GeoIp' do
 
     it 'should return nothing country for a private ip address' do
       stub_geolocation(IP_PRIVATE, precision: :country) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "10.0.0.1",
 	"countryCode" : "-",
 	"countryName" : "-"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_PRIVATE, precision: :country)
       geolocation[:country_code].should == '-'
@@ -167,13 +167,13 @@ describe 'GeoIp' do
 
     it 'should return nothing country for localhost ip address' do
       stub_geolocation(IP_LOCAL, precision: :country) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "127.0.0.1",
 	"countryCode" : "-",
 	"countryName" : "-"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_LOCAL, precision: :country)
       geolocation[:country_code].should == '-'
@@ -182,13 +182,13 @@ describe 'GeoIp' do
 
     it 'should not return the city for a public ip address' do
       stub_geolocation(IP_GOOGLE_US, precision: :country) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
 	"countryCode" : "US",
 	"countryName" : "UNITED STATES"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country)
       geolocation[:country_code].should == 'US'
@@ -200,7 +200,7 @@ describe 'GeoIp' do
   context 'timezone' do
     it 'should return the correct timezone information for a public ip address' do
       stub_geolocation(IP_GOOGLE_US, timezone: true) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
@@ -212,7 +212,7 @@ describe 'GeoIp' do
 	"latitude" : "34.0505",
 	"longitude" : "-118.13",
 	"timeZone" : "-08:00"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, timezone: true)
       geolocation[:timezone].should == '-08:00' # This one is likely to break when dst changes.
@@ -220,7 +220,7 @@ describe 'GeoIp' do
 
     it 'should not return the timezone information when explicitly not requesting it' do
       stub_geolocation(IP_GOOGLE_US, timezone: false) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
@@ -232,7 +232,7 @@ describe 'GeoIp' do
 	"latitude" : "34.0505",
 	"longitude" : "-118.13",
 	"timeZone" : "-08:00"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, timezone: false)
       geolocation[:timezone].should be_nil
@@ -240,7 +240,7 @@ describe 'GeoIp' do
 
     it 'should not return the timezone information when not requesting it' do
       stub_geolocation(IP_GOOGLE_US) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
@@ -252,7 +252,7 @@ describe 'GeoIp' do
 	"latitude" : "34.0505",
 	"longitude" : "-118.13",
 	"timeZone" : "-08:00"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US)
       geolocation[:timezone].should be_nil
@@ -260,7 +260,7 @@ describe 'GeoIp' do
 
     it 'should not return the timezone information when country precision is selected' do
       stub_geolocation(IP_GOOGLE_US, precision: :country, timezone: true) do
-%[{
+%({
 	"statusCode" : "OK",
 	"statusMessage" : "",
 	"ipAddress" : "209.85.227.104",
@@ -272,7 +272,7 @@ describe 'GeoIp' do
 	"latitude" : "34.0505",
 	"longitude" : "-118.13",
 	"timeZone" : "-08:00"
-}]
+})
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country, timezone: true)
       geolocation[:timezone].should be_nil
