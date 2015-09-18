@@ -50,7 +50,7 @@ class GeoIp
 
     def lookup_url(ip, options = {})
       set_defaults_if_necessary options
-      raise ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if self.api_key.nil?
+      raise ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if api_key.nil?
       raise InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
 
       "#{SERVICE_URL}#{options[:precision] == :city || options[:timezone] ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{options[:timezone]}"
@@ -66,8 +66,8 @@ class GeoIp
     #   GeoIp.geolocation('209.85.227.104', {:precision => :city, :timezone => true})
     def geolocation(ip, options={})
       location = nil
-      Timeout.timeout(self.fallback_timeout) do
-        parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: self.timeout)
+      Timeout.timeout(fallback_timeout) do
+        parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: timeout)
         location = convert_keys(parsed_response, options)
       end
 
