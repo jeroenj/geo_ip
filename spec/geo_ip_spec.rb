@@ -36,7 +36,7 @@ describe 'GeoIp' do
 
     it 'should throw an error when API key is not set' do
       GeoIp.api_key = nil
-      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_error
+      -> { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_error
     end
   end
 
@@ -282,13 +282,13 @@ describe 'GeoIp' do
   context 'timeout' do
     it 'should trigger timeout when the request is taking too long' do
       stub_request(:get, GeoIp.lookup_url(IP_GOOGLE_US)).to_timeout
-      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception('Request Timeout')
+      -> { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception('Request Timeout')
     end
 
     it 'should trigger fallback timeout when RestClient is taking too long to send the request', focus: true do
       GeoIp.fallback_timeout = 1
       RestClient::Request.stub(:execute) { sleep 2 }
-      lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception(Timeout::Error)
+      -> { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception(Timeout::Error)
     end
   end
 end
