@@ -44,14 +44,14 @@ class GeoIp
     def set_defaults_if_necessary(options)
       options[:precision] ||= :city
       options[:timezone]  ||= false
-      raise InvalidPrecisionError unless [:country, :city].include?(options[:precision])
-      raise InvalidTimezoneError unless [true, false].include?(options[:timezone])
+      fail InvalidPrecisionError unless [:country, :city].include?(options[:precision])
+      fail InvalidTimezoneError unless [true, false].include?(options[:timezone])
     end
 
     def lookup_url(ip, options = {})
       set_defaults_if_necessary options
-      raise ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if api_key.nil?
-      raise InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
+      fail ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if api_key.nil?
+      fail InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
 
       "#{SERVICE_URL}#{options[:precision] == :city || options[:timezone] ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{options[:timezone]}"
     end
