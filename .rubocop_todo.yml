@@ -70,9 +70,3 @@ Style/Lambda:
 # Configuration parameters: SupportedStyles.
 Style/RaiseArgs:
   EnforcedStyle: compact
-
-# Offense count: 86
-# Cop supports --auto-correct.
-Style/Tab:
-  Exclude:
-    - 'spec/geo_ip_spec.rb'
