@@ -193,7 +193,7 @@ describe 'GeoIp' do
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
-      geolocation[:city].should         be_nil
+      geolocation[:city].should be_nil
     end
   end
 
