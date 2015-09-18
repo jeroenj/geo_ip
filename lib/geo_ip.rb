@@ -90,9 +90,7 @@ class GeoIp
         location[:zip_code]     = hash['zipCode']
         location[:latitude]     = hash['latitude']
         location[:longitude]    = hash['longitude']
-        if options[:timezone]
-          location[:timezone]   = hash['timeZone']
-        end
+        location[:timezone]     = hash['timeZone'] if options[:timezone]
       end
       location
     end

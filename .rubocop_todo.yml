@@ -53,13 +53,6 @@ Style/GuardClause:
   Exclude:
     - 'spec/geo_ip_spec.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: MaxLineLength.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'lib/geo_ip.rb'
-
 # Offense count: 12
 # Cop supports --auto-correct.
 # Configuration parameters: Width.
