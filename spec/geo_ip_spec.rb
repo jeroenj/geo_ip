@@ -18,7 +18,7 @@ describe 'GeoIp' do
   def stub_geolocation(ip, options = {}, &_block)
     if USE_WEBMOCK
       stub_request(:get, GeoIp.lookup_url(ip, options))
-        .with(headers: {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate'})
+        .with(headers: {'Accept' => '*/*; q=0.5, application/xml', 'Accept-Encoding' => 'gzip, deflate'})
         .to_return(status: 200, body: yield, headers: {})
     end
   end
@@ -61,7 +61,7 @@ describe 'GeoIp' do
       geolocation = GeoIp.geolocation(IP_GOOGLE_US)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
-      geolocation[:city].should         == 'MONTEREY PARK'
+      geolocation[:city].should == 'MONTEREY PARK'
     end
 
     it 'should return nothing city for a private ip address' do
@@ -84,7 +84,7 @@ describe 'GeoIp' do
       geolocation = GeoIp.geolocation(IP_PRIVATE)
       geolocation[:country_code].should == '-'
       geolocation[:country_name].should == '-'
-      geolocation[:city].should         == '-'
+      geolocation[:city].should == '-'
     end
 
     it 'should return nothing for localhost ip address' do
@@ -107,7 +107,7 @@ describe 'GeoIp' do
       geolocation = GeoIp.geolocation(IP_LOCAL)
       geolocation[:country_code].should == '-'
       geolocation[:country_name].should == '-'
-      geolocation[:city].should         == '-'
+      geolocation[:city].should == '-'
     end
 
     it 'should return the correct city for a public ip address when explicitly requiring it' do
@@ -130,7 +130,7 @@ describe 'GeoIp' do
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :city)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
-      geolocation[:city].should         == 'MONTEREY PARK'
+      geolocation[:city].should == 'MONTEREY PARK'
     end
   end
 

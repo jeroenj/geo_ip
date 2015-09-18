@@ -71,14 +71,6 @@ Style/Lambda:
 Style/RaiseArgs:
   EnforcedStyle: compact
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: MultiSpaceAllowedForOperators.
-Style/SpaceAroundOperators:
-  Exclude:
-    - 'lib/geo_ip.rb'
-    - 'spec/geo_ip_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SupportedStyles.

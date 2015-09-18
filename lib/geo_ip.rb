@@ -43,7 +43,7 @@ class GeoIp
 
     def set_defaults_if_necessary(options)
       options[:precision] ||= :city
-      options[:timezone]  ||= false
+      options[:timezone] ||= false
       fail InvalidPrecisionError unless [:country, :city].include?(options[:precision])
       fail InvalidTimezoneError unless [true, false].include?(options[:timezone])
     end
