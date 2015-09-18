@@ -1,3 +1,7 @@
+## unreleased
+
+* Adds ruby 2.0, 2.1 and 2.2 to the Travis build matrix
+
 ## 0.5.0
 
 * Wrap Ruby's Timeout module around the RestClient call to enforce timeout if caused by bad internet connection or slow or invalid DNS lookup. Added WebMock to tests to have reliable tests. By [harleyttd](https://github.com/harleyttd)
