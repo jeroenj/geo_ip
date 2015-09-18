@@ -8,12 +8,6 @@
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Lint/DeprecatedClassMethods:
-  Exclude:
-    - 'Rakefile'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Lint/UnusedMethodArgument:
   Exclude:
     - 'spec/geo_ip_spec.rb'

@@ -13,5 +13,5 @@ task :default => [:copy, :spec]
 
 task :copy do
   path = File.expand_path(File.dirname(__FILE__) + '/spec')
-  cp "#{path}/api.yml.example", "#{path}/api.yml" unless File.exists?("#{path}/api.yml")
+  cp "#{path}/api.yml.example", "#{path}/api.yml" unless File.exist?("#{path}/api.yml")
 end
