@@ -53,12 +53,6 @@ Style/GuardClause:
   Exclude:
     - 'spec/geo_ip_spec.rb'
 
-# Offense count: 26
-# Cop supports --auto-correct.
-# Configuration parameters: SupportedStyles, UseHashRocketsWithSymbolValues.
-Style/HashSyntax:
-  EnforcedStyle: hash_rockets
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: MaxLineLength.

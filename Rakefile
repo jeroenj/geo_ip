@@ -9,7 +9,7 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = %w[--color]
 end
 
-task :default => [:copy, :spec]
+task default: [:copy, :spec]
 
 task :copy do
   path = File.expand_path(File.dirname(__FILE__) + '/spec')

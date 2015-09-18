@@ -18,8 +18,8 @@ describe 'GeoIp' do
   def stub_geolocation(ip, options = {}, &_block)
     if USE_WEBMOCK
       stub_request(:get, GeoIp.lookup_url(ip, options))
-             .with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate'})
-             .to_return(:status => 200, :body => yield, :headers => {})
+             .with(headers: {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate'})
+             .to_return(status: 200, body: yield, headers: {})
     end
   end
 
@@ -127,7 +127,7 @@ describe 'GeoIp' do
 }]
       end
 
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :precision => :city)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :city)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
       geolocation[:city].should         == 'MONTEREY PARK'
@@ -136,7 +136,7 @@ describe 'GeoIp' do
 
   context 'country' do
     it 'should return the correct country for a public ip address' do
-      stub_geolocation(IP_GOOGLE_US, :precision => :country) do
+      stub_geolocation(IP_GOOGLE_US, precision: :country) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -145,13 +145,13 @@ describe 'GeoIp' do
 	"countryName" : "UNITED STATES"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :precision => :country)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
     end
 
     it 'should return nothing country for a private ip address' do
-      stub_geolocation(IP_PRIVATE, :precision => :country) do
+      stub_geolocation(IP_PRIVATE, precision: :country) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -160,13 +160,13 @@ describe 'GeoIp' do
 	"countryName" : "-"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_PRIVATE, :precision => :country)
+      geolocation = GeoIp.geolocation(IP_PRIVATE, precision: :country)
       geolocation[:country_code].should == '-'
       geolocation[:country_name].should == '-'
     end
 
     it 'should return nothing country for localhost ip address' do
-      stub_geolocation(IP_LOCAL, :precision => :country) do
+      stub_geolocation(IP_LOCAL, precision: :country) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -175,13 +175,13 @@ describe 'GeoIp' do
 	"countryName" : "-"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_LOCAL, :precision => :country)
+      geolocation = GeoIp.geolocation(IP_LOCAL, precision: :country)
       geolocation[:country_code].should == '-'
       geolocation[:country_name].should == '-'
     end
 
     it 'should not return the city for a public ip address' do
-      stub_geolocation(IP_GOOGLE_US, :precision => :country) do
+      stub_geolocation(IP_GOOGLE_US, precision: :country) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -190,7 +190,7 @@ describe 'GeoIp' do
 	"countryName" : "UNITED STATES"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :precision => :country)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country)
       geolocation[:country_code].should == 'US'
       geolocation[:country_name].should == 'UNITED STATES'
       geolocation[:city].should         be_nil
@@ -199,7 +199,7 @@ describe 'GeoIp' do
 
   context 'timezone' do
     it 'should return the correct timezone information for a public ip address' do
-      stub_geolocation(IP_GOOGLE_US, :timezone => true) do
+      stub_geolocation(IP_GOOGLE_US, timezone: true) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -214,12 +214,12 @@ describe 'GeoIp' do
 	"timeZone" : "-08:00"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :timezone => true)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, timezone: true)
       geolocation[:timezone].should == '-08:00' # This one is likely to break when dst changes.
     end
 
     it 'should not return the timezone information when explicitly not requesting it' do
-      stub_geolocation(IP_GOOGLE_US, :timezone => false) do
+      stub_geolocation(IP_GOOGLE_US, timezone: false) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -234,7 +234,7 @@ describe 'GeoIp' do
 	"timeZone" : "-08:00"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :timezone => false)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, timezone: false)
       geolocation[:timezone].should be_nil
     end
 
@@ -259,7 +259,7 @@ describe 'GeoIp' do
     end
 
     it 'should not return the timezone information when country precision is selected' do
-      stub_geolocation(IP_GOOGLE_US, :precision => :country, :timezone => true) do
+      stub_geolocation(IP_GOOGLE_US, precision: :country, timezone: true) do
 %[{
 	"statusCode" : "OK",
 	"statusMessage" : "",
@@ -274,7 +274,7 @@ describe 'GeoIp' do
 	"timeZone" : "-08:00"
 }]
       end
-      geolocation = GeoIp.geolocation(IP_GOOGLE_US, :precision => :country, :timezone => true)
+      geolocation = GeoIp.geolocation(IP_GOOGLE_US, precision: :country, timezone: true)
       geolocation[:timezone].should be_nil
     end
   end
@@ -285,7 +285,7 @@ describe 'GeoIp' do
       lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception('Request Timeout')
     end
 
-    it 'should trigger fallback timeout when RestClient is taking too long to send the request', :focus => true do
+    it 'should trigger fallback timeout when RestClient is taking too long to send the request', focus: true do
       GeoIp.fallback_timeout = 1
       RestClient::Request.stub(:execute) { sleep 2 }
       lambda { GeoIp.geolocation(IP_GOOGLE_US) }.should raise_exception(Timeout::Error)

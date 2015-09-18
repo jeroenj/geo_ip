@@ -67,7 +67,7 @@ class GeoIp
     def geolocation ip, options={}
       location = nil
       Timeout.timeout(self.fallback_timeout) do
-        parsed_response = JSON.parse RestClient::Request.execute(:method => :get, :url => lookup_url(ip, options), :timeout => self.timeout)
+        parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: self.timeout)
         location = convert_keys(parsed_response, options)
       end
 
