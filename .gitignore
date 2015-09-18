@@ -24,3 +24,5 @@ spec/api.yml
 
 ## RVM
 .rvmrc
+
+Gemfile.lock
