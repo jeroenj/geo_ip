@@ -64,7 +64,7 @@ class GeoIp
     #
     # ==== Example:
     #   GeoIp.geolocation('209.85.227.104', {:precision => :city, :timezone => true})
-    def geolocation(ip, options={})
+    def geolocation(ip, options = {})
       location = nil
       Timeout.timeout(fallback_timeout) do
         parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: timeout)
