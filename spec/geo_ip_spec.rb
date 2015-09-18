@@ -15,7 +15,7 @@ describe 'GeoIp' do
     end
   end
 
-  def stub_geolocation(ip, options = {}, &block)
+  def stub_geolocation(ip, options = {}, &_block)
     if USE_WEBMOCK
       stub_request(:get, GeoIp.lookup_url(ip, options)).
              with(:headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate'}).
