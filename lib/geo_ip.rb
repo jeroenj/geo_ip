@@ -75,6 +75,7 @@ class GeoIp
     end
 
     private
+
     def convert_keys hash, options
       set_defaults_if_necessary options
       location = {}
