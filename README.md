@@ -109,6 +109,8 @@ GeoIp can be installed as a Ruby Gem:
 
     gem install geo_ip
 
+*note:* As of v0.6.0 GeoIp is only compatible with ruby 1.9.3 or higher. You can still use v0.5.0 if you need ruby 1.8.7 or 1.9.2 compatiblity.
+
 ### Rails
 
 #### Bundler enabled (Rails 3.x and 2.3.x)
