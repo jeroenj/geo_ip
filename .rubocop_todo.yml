@@ -73,12 +73,6 @@ Style/RaiseArgs:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Style/SpecialGlobalVars:
-  Exclude:
-    - 'geo_ip.gemspec'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.
 Style/StringLiterals:
   Enabled: false
