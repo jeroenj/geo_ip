@@ -1,6 +1,8 @@
 ## unreleased
 
 * Adds ruby 2.0, 2.1 and 2.2 to the Travis build matrix
+* Drops support for ruby 1.8.7 and 1.9.2
+* Improves formatting and fixes various rubocop (0.34.1) offencs
 
 ## 0.5.0 (2012-03-03)
 
