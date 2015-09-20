@@ -10,7 +10,6 @@ class GeoIp
   SERVICE_URL = 'http://api.ipinfodb.com/v3/ip-'
   CITY_API    = 'city'
   COUNTRY_API = 'country'
-  IPV4_REGEXP = /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
 
   @@api_key = nil
   @@timeout = 1
@@ -51,7 +50,7 @@ class GeoIp
     def lookup_url(ip, options = {})
       set_defaults_if_necessary options
       fail ApiKeyError.new('API key must be set first: GeoIp.api_key = \'YOURKEY\'') if api_key.nil?
-      fail InvalidIpError.new(ip) unless ip.to_s =~ IPV4_REGEXP
+      fail InvalidIpError.new(ip) unless ip.to_s =~ Resolv::IPv4::Regex || ip.to_s =~ Resolv::IPv6::Regex
 
       "#{SERVICE_URL}#{options[:precision] == :city || options[:timezone] ? CITY_API : COUNTRY_API}?key=#{api_key}&ip=#{ip}&format=json&timezone=#{options[:timezone]}"
     end
