@@ -150,6 +150,7 @@ If you get a LoadError, you should run the tests with:
 * [idris](https://github.com/idris)
 * [Rylon](https://github.com/Rylon)
 * [harleyttd](https://github.com/harleyttd)
+* [dnswus](https://github.com/dnswus)
 
 ## Bugs
 
