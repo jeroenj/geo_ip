@@ -1,3 +1,7 @@
+### 0.6.2 (2016-02-10)
+
+* Removes explicit json (gem) dependency as it is bundled with all supported ruby versions.
+
 ### 0.6.1 (2015-11-17)
 
 * Loosens [rest-client](https://github.com/adamwiggins/rest-client) dependency to `~> 1.6`.
