@@ -1,3 +1,7 @@
+### 0.6.1 (2015-11-17)
+
+* Loosens [rest-client](https://github.com/adamwiggins/rest-client) dependency to `~> 1.6`.
+
 ## 0.6.0 (2015-09-21)
 
 * Adds ruby 2.0, 2.1 and 2.2 to the Travis build matrix
