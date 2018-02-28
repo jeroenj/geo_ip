@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rest-client', '~> 1.6'
   s.add_development_dependency 'rake', '< 11' # TODO: remove this lock again when RSpec gets upgraded and no longer uses the `last_commit` method
   s.add_development_dependency 'rspec', '~> 2.5'
-  s.add_development_dependency 'webmock', '~> 1.7.10'
+  s.add_development_dependency 'webmock', '~> 2.3.2'
 end
