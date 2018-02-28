@@ -1,4 +1,5 @@
 require 'json'
+require 'resolv'
 require 'rest-client'
 
 class GeoIp
