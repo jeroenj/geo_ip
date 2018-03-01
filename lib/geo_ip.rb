@@ -1,6 +1,6 @@
 require 'json'
 require 'resolv'
-require 'rest-client'
+require 'net/http'
 
 class GeoIp
   class InvalidPrecissionError < ArgumentError; end
@@ -67,7 +67,7 @@ class GeoIp
     def geolocation(ip, options = {})
       location = nil
       Timeout.timeout(fallback_timeout) do
-        parsed_response = JSON.parse RestClient::Request.execute(method: :get, url: lookup_url(ip, options), timeout: timeout)
+        parsed_response = JSON.parse Net::HTTP.get(URI(lookup_url(ip, options)))
         location = convert_keys(parsed_response, options)
       end
 
