@@ -230,7 +230,7 @@ describe 'GeoIp' do
         })
       end
       geolocation = GeoIp.geolocation(IP_GOOGLE_US, timezone: true)
-      expect(geolocation[:timezone]).to eq('-08:00') # This one is likely to break when dst changes.)
+      expect(geolocation[:timezone]).to eq('-08:00') # This one is likely to break when dst changes.
     end
 
     it 'should not return the timezone information when explicitly not requesting it' do
