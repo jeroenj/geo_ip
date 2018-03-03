@@ -16,8 +16,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir.glob('spec/**/*')
   s.require_paths = ['lib']
 
-  s.add_dependency 'rest-client', '~> 1.6'
-  s.add_development_dependency 'rake', '< 11' # TODO: remove this lock again when RSpec gets upgraded and no longer uses the `last_commit` method
-  s.add_development_dependency 'rspec', '~> 2.5'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec', '~> 3.0'
   s.add_development_dependency 'webmock', '~> 2.3.2'
 end
