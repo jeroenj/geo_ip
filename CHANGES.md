@@ -1,3 +1,10 @@
+### 0.7.0 (2018-03-03)
+
+* Requires ruby >= 1.9.3 from the gemspec.
+* Adds ruby 2.4 and 2.5 to the Travis build matrix
+* Removes dependency on rest-client. By [elfenars](https://github.com/elfenars)
+* Updates test suite to RSpec 3.x. By [elfenars](https://github.com/elfenars)
+
 ### 0.6.2 (2016-02-10)
 
 * Removes explicit json (gem) dependency as it is bundled with all supported ruby versions.
