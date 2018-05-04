@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.authors = ['Jeroen Jacobs']
   s.email = 'gems@jeroenj.be'
-  s.homepage = 'http://jeroenj.be'
+  s.homepage = 'https://github.com/jeroenj/geo_ip'
   s.summary = 'Retreive the geolocation of an IP address based on the ipinfodb.com webservice'
   s.description = 'A call to the ipinfodb.com will be done to retreive the geolocation based on the IP address. No need to include a database file in the application.'
 
