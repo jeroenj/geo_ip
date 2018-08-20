@@ -1,3 +1,7 @@
+### 0.7.1 (2018-08-20)
+
+* Updates gemspec metadata
+
 ### 0.7.0 (2018-03-03)
 
 * Requires ruby >= 1.9.3 from the gemspec.
