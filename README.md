@@ -167,4 +167,4 @@ Do not forget to include tests.
 
 ## Copyright
 
-Copyright (c) 2010-2013 Jeroen Jacobs. See LICENSE for details.
+Copyright (c) 2010-2018 Jeroen Jacobs. See LICENSE for details.
