@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.version = '0.7.0'
   s.required_ruby_version = '>= 1.9.3'
   s.platform = Gem::Platform::RUBY
+  s.license = 'MIT'
   s.authors = ['Jeroen Jacobs']
   s.email = 'gems@jeroenj.be'
   s.homepage = 'https://github.com/jeroenj/geo_ip'
